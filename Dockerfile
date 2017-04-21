@@ -1,10 +1,21 @@
+#
+# To use this image you need:
+#
+#     KUBE_CA
+#     KUBE_SERVER
+#     KUBE_TOKEN
+#
+
 FROM alpine:3.5
 
-ADD https://storage.googleapis.com/kubernetes-release/release/v1.6.2/bin/linux/amd64/kubectl /kubectl
+ADD https://storage.googleapis.com/kubernetes-release/release/v1.6.2/bin/linux/amd64/kubectl /bin/kubectl_org
 RUN set -x && \
-    apk add --update --no-cache bash curl sed ca-certificates && \
+    apk add --update --no-cache bash curl sed gawk ca-certificates && \
     cp /bin/bash /bin/sh && \
-    chmod +x /kubectl 
-    
+    chmod +x /bin/kubectl_org
 
-ENTRYPOINT ["/kubectl"]
+COPY kubectl.sh /bin/kubectl
+RUN chmod +x /bin/kubectl
+
+ENTRYPOINT ["/bin/kubectl"]
+
