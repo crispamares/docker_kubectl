@@ -15,7 +15,10 @@ RUN set -x && \
     chmod +x /bin/kubectl_org
 
 COPY kubectl.sh /bin/kubectl
-RUN chmod +x /bin/kubectl
+COPY entry.sh /entry.sh
 
-ENTRYPOINT ["/bin/kubectl"]
+RUN chmod +x /bin/kubectl
+RUN chmod +x /entry.sh
+
+ENTRYPOINT ["/entry.sh"]
 
