@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo $PLUGIN_CMD
-$PLUGIN_CMD
+echo ${PLUGIN_CMD}
+bash -c "$PLUGIN_CMD"
