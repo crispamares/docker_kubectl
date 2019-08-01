@@ -8,7 +8,7 @@
 
 FROM alpine:3.6
 
-ADD https://storage.googleapis.com/kubernetes-release/release/v1.11.5/bin/linux/amd64/kubectl /bin/kubectl_org
+ADD https://storage.googleapis.com/kubernetes-release/release/v1.13.7/bin/linux/amd64/kubectl /bin/kubectl_org
 RUN set -x && \
     apk add --update --no-cache bash curl sed gawk ca-certificates && \
     cp /bin/bash /bin/sh && \
